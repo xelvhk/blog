@@ -63,9 +63,9 @@ INSERT INTO
     VALUES(
         1,
         date('now', '-10 days'),
-        'Jimmy',
+        'Lex',
         'http://example.com/',
-        "This is Jimmy's contribution"
+        "This is Lex's contribution"
     )
 ;
 INSERT INTO
@@ -76,8 +76,8 @@ INSERT INTO
     VALUES(
         1,
         date('now', '-8 days'),
-        'Jonny',
+        'Alex',
         'http://anotherexample.com/',
-        "This is a comment from Jonny"
+        "This is a comment from Alex"
     )
 ;
