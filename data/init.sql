@@ -17,7 +17,7 @@ INSERT INTO
         "This is the body of the first post.
 It is split into paragraphs.",
         1,
-        date('now', '-2 months')
+        datetime('now', '-2 months', '-45 minutes', '+10 seconds')
     )
 ;
 INSERT INTO
@@ -30,7 +30,7 @@ INSERT INTO
         "This is the body of the second post.
 This is another paragraph.",
         1,
-        date('now', '-40 days')
+        datetime('now', '-40 days', '+815 minutes', '+37 seconds')
     )
 ;
 INSERT INTO
@@ -43,7 +43,7 @@ INSERT INTO
         "This is the body of the third post.
 This is split into paragraphs.",
         1,
-        date('now', '-13 days')
+        datetime('now', '-13 days', '+198 minutes', '+51 seconds')
     )
 ;
 DROP TABLE IF EXISTS comment;
@@ -62,7 +62,7 @@ INSERT INTO
     )
     VALUES(
         1,
-        date('now', '-10 days'),
+        datetime('now', '-10 days', '+231 minutes', '+7 seconds'),
         'Lex',
         'http://example.com/',
         "This is Lex's contribution"
@@ -75,7 +75,7 @@ INSERT INTO
     )
     VALUES(
         1,
-        date('now', '-8 days'),
+         datetime('now', '-8 days', '+549 minutes', '+32 seconds'),
         'Alex',
         'http://anotherexample.com/',
         "This is a comment from Alex"
