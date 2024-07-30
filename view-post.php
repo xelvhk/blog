@@ -41,6 +41,14 @@ if ($_POST)
         redirectAndExit('view-post.php?post_id=' . $postId);
     }
 }
+else
+{
+    $commentData = array(
+        'name' => '',
+        'website' => '',
+        'text' => '',
+    );
+}
 // Swap carriage returns for paragraph breaks
 $bodyText = htmlEscape($row['body']);
 $paraText = str_replace("\n", "</p><p>", $bodyText);
