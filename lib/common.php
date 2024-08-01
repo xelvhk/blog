@@ -53,6 +53,17 @@ function convertSqlDate($sqlDate)
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $sqlDate);
     return $date->format('d M Y, H:i');
 }
+/**
+ * Converts unsafe text to safe, paragraphed, HTML
+ *
+ * @param string $text
+ * @return string
+ */
+function convertNewlinesToParagraphs($text)
+{
+    $escaped = htmlEscape($text);
+    return '<p>' . str_replace("\n", "</p><p>", $escaped) . '</p>';
+}
 
 function redirectAndExit($script)
 {
