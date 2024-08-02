@@ -53,6 +53,11 @@ function convertSqlDate($sqlDate)
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $sqlDate);
     return $date->format('d M Y, H:i');
 }
+function getSqlDateForNow()
+{
+    return date('Y-m-d H:i:s');
+}
+
 /**
  * Converts unsafe text to safe, paragraphed, HTML
  *
