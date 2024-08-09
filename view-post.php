@@ -59,6 +59,7 @@ else
             A blog application |
             <?php echo htmlEscape($row['title']) ?>
         </title>
+        <?php require 'templates/head.php' ?>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     </head>
     <body>
