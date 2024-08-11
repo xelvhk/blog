@@ -107,7 +107,7 @@ function countCommentsForPost(PDO $pdo, $postId)
 }
 /**
  * Returns all the comments for the specified post
- * * @param PDO $pdo
+ * @param PDO $pdo
  * @param integer $postId
  * return array
  */
