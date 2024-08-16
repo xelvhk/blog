@@ -1,10 +1,61 @@
 <?php
 require_once 'lib/common.php';
+require_once 'lib/edit-post.php';
+require_once 'lib/view-post.php';
 session_start();
 // Don't let non-auth users see this screen
 if (!isLoggedIn())
 {
     redirectAndExit('index.php');
+}
+// Empty defaults
+$title = $body = '';
+// Init database and get handle
+$pdo = getPDO();
+
+// Handle the post operation here
+$errors = array();
+if ($_POST)
+{
+    // Validate these first
+    $title = $_POST['post-title'];
+    if (!$title)
+    {
+        $errors[] = 'The post must have a title';
+    }
+    $body = $_POST['post-body'];
+    if (!$body)
+    {
+        $errors[] = 'The post must have a body';
+    }
+    if (!$errors)
+    {
+        $pdo = getPDO();
+        $userId = getAuthUserId($pdo);
+        $postId = addPost(
+            $pdo,
+            $title,
+            $body,
+            $userId
+        );
+        if ($postId === false)
+        {
+            $errors[] = 'Post operation failed';
+        }
+    }
+    if (!$errors)
+    {
+        redirectAndExit('edit-post.php?post_id=' . $postId);
+    }
+}
+elseif (isset($_GET['post_id']))
+{
+    $post = getPostRow($pdo, $_GET['post_id']);
+    if ($post)
+    {
+        $title = $post['title'];
+        $body = $post['body'];
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -15,6 +66,16 @@ if (!isLoggedIn())
     </head>
     <body>
         <?php require 'templates/title.php' ?>
+        <?php if ($errors): ?>
+            <div class="error box">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo $error ?></li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+        <?php endif ?>
+
         <form method="post" class="post-form user-form">
             <div>
                 <label for="post-title">Title:</label>
@@ -22,6 +83,7 @@ if (!isLoggedIn())
                     id="post-title"
                     name="post-title"
                     type="text"
+                    value="<?php echo htmlEscape($title) ?>"
                 />
             </div>
             <div>
@@ -31,7 +93,7 @@ if (!isLoggedIn())
                     name="post-body"
                     rows="12"
                     cols="70"
-                ></textarea>
+                    ><?php echo htmlEscape($body) ?></textarea>
             </div>
             <div>
                 <input
