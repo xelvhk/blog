@@ -58,12 +58,17 @@ body {
     border-top: 1px dotted silver;
     padding-top: 8px;
 }
+.comment .comment-meta input {
+    float: right;
+}
+
 .comment-body p {
     margin: 8px 4px;
 }
 .comment-list {
     border-bottom: 1px dotted silver;
     margin-bottom: 12px;
+    max-width: 900px;
 }
 .comment-margin {
     margin-bottom: 8px;
