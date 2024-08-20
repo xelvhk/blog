@@ -92,8 +92,9 @@ body {
     border-collapse: collapse;
     border: 1px solid silver;
 }
-#post-list td {
+#post-list td, #post-list th {
     padding: 8px;
+    text-align: left;
 }
 #post-list tbody tr:nth-child(odd) {
     background-color: #f4f4f4;

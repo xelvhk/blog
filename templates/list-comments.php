@@ -2,6 +2,7 @@
 /**
  * @var $pdo PDO
  * @var $postId integer
+ * @var $commentCount integer
  */
 ?>
 <form
@@ -9,8 +10,8 @@
     method="post"
     class="comment-list"
 >
-    <h3><?php echo countCommentsForPost($pdo, $postId) ?> comments</h3>
-    <?php foreach (getCommentsForPost($pdo, $postId) as $comment): ?>
+<h3><?php echo $commentCount ?> comments</h3>
+<?php foreach (getCommentsForPost($pdo, $postId) as $comment): ?>
         <div class="comment">
             <div class="comment-meta">
                 Comment from
